@@ -66,8 +66,13 @@ div img {
   *
   **/
 
+p, ol, h3{
+    position: relative;
+    top: 50px;
+} 
+
 #container-de-descricao {
-    background-color: #2274a5;
+    background-color: #2274a5;  
     color: white;
 }
 
