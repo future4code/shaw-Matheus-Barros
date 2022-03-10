@@ -69,6 +69,7 @@ div img {
 p, ol, h3{
     position: relative;
     top: 50px;
+    width: auto;
 } 
 
 #container-de-descricao {
