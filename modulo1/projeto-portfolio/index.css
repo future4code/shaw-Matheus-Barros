@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,500;1,400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /*pesquisar sobre*/
+}
+
+/*HEADER*/
+
+.topo-da-pagina{
+    background-color: #007352;
+    padding: 1em;
+    display: flex; /*pesquisar sobre*/
+    justify-content: space-between; /*pesquisar sobre*/
+}
+
+header p{
+    font: italic bolder 2.5em 'Share Tech Mono', monospace;
+    padding: 0em 1em; 
+}
+
+nav a{
+    font: 1.5em 'Roboto Mono', monospace;
+    padding: 0em 1.5em;
+    text-decoration: none; /*pesquisar sobre*/
+    color: white;
+}
+
+/*BODY - APRESENTAÇÃO*/
+
+.fundo-apresentar{
+    background-color: #4aa088;
+}
+
+.titulo{
+    text-align: center;
+    font: bolder 2em 'Share Tech Mono', monospace;
+    padding: 2em 2em 0.5em 2em;
+}
+
+.img-perfil{
+    display: block;
+    margin: 0 auto;
+    width: 10em;
+    border-radius: 14em;
+    border: 0.1em solid black;
+}
+
+.texto-h1{
+    font: 1.2em 'Roboto Mono', monospace;
+    padding: 1em 1.5em;
+    text-align: justify;
+    text-indent: 2em;
+}
+
+.texto-formacao{
+    font: 1.2em 'Roboto Mono', monospace;
+    padding: 1.5em 1.5em;
+    text-align: justify;
+}
+
+/*BODY - HABILIDADES E COMPETÊNCIAS*/
+
+.fundo-soft-hard{
+    background-color: #368A72;
+    padding: 2em;
+}
+
+.bloco-em-linha{
+    display: inline-block;
+}
+
+/*FOOTER*/
+
+
+footer{
+    background-color: #007352;
+    text-align: center;
+    padding-top: 2em;
+}
+
+h3{
+    font: bolder 2em 'Share Tech Mono', monospace;
+}
+
+.footer-img1{
+    max-width: 4em;
+}
+
+.footer-img2{
+    max-width: 8em;
+    color: 3em solid black;
+    padding: 1em 1em 0em 2em;
+}
