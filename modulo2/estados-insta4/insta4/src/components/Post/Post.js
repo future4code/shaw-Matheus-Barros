@@ -10,7 +10,7 @@ import {SecaoComentario} from '../SecaoComentario/SecaoComentario'
 
 const PostContainer = styled.div`
   border: 1px solid gray;
-  width: 300px;
+  width: 22vw;
   margin-bottom: 10px;
 `
 
@@ -30,6 +30,7 @@ const PostFooter = styled.div`
 `
 
 const UserPhoto = styled.img`
+  border: 1px solid gray;
   height: 30px;
   width: 30px;
   margin-right: 10px;
@@ -38,6 +39,8 @@ const UserPhoto = styled.img`
 
 const PostPhoto = styled.img`
   width: 100%;
+  height: 40vh;
+  border: 1px solid gray;
 `
 
 class Post extends React.Component {
