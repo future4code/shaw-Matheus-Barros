@@ -1,49 +1,55 @@
-import React from 'react';
-import styled from 'styled-components';
-import Chat from './Components/chat'
+import React from "react";
+import styled, { createGlobalStyle } from "styled-components";
+import Input from "./components/Input";
 
-const MainContainer = styled.div`
-  background-color: #282c34;
-`
-const BoxChat = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  min-height: 100vh;
-  width: 50vw;
-  border: 1px solid orange;
-`
+const GloboStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  } 
+
+  body {
+    background-color: black;
+  }
+`;
+
+const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 30px auto;
+  height: 90vh;
+  width: 35vw;
+  border: 3px solid orange;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-image: url(http://img.htmlsucai.com/forum/201708/04/161108ffr16g16w25mzmo1.jpg);
+`;
+
 const HeaderBox = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 10vh;
+  height: 10vh;
   width: 100%;
   background-color: orange;
-  color: black;
+  color: #161616;
   text-decoration-line: underline;
-`
-
-const FooterBox = styled.footer`
-  min-height: 10vh;
-  width: 100%;
-  background-color: orange;
-`
+`;
 
 class App extends React.Component {
 
   render() {
 
     return (
-      <MainContainer>
-        <BoxChat>
-          <HeaderBox>
-            <h1>WhatsLab</h1>
-          </HeaderBox>
-          <Chat />
-        </BoxChat>
-      </MainContainer>
+      <Box>
+        <GloboStyle />
+        <HeaderBox>
+          <h1>WhatsLab</h1>
+        </HeaderBox>
+        <Input />
+      </Box>
     );
-
   }
 }
 
