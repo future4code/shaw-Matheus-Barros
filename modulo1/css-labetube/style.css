@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* div h1{
+TROCAR A FONT-SIZE DE FORMA RESPONSIVA FORA DE @MEDIA É POSSÍVEL?
+} */
+
+
+a {
+    Text-decoration: none;
+}
+
+/*HEADER DAS PÁGINAS DOS VÍDEOS*/
+
+a:hover {
+    color: #0000ff75;
+}
+
+/*HEADER INDEX*/
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f5911ee8;
+        height: 10vh;
+        width: 100%;
+        padding: 0 1em;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+    input {
+        border-radius: 1em; /*Pq %/vh/vw não deixa a borda redondinha como em/rem?*/
+        padding: 0.22em;
+        min-width: 20vw;
+        max-width: 23vw;
+    }
+
+    h1 a {
+        color: black;
+    }
+
+/*MAIN*/
+
+    main {
+        display: flex;
+        flex-direction: column;
+        gap: 2em;
+        text-align: center;
+        height: auto;
+        padding: 2em;
+        background-color: black;
+    }
+
+    img {
+        width: 40%;
+        border-radius: 1em;
+    }
+
+    main h2, h6 {
+        text-align: center;
+        color: white;
+    }
+
+/*SECTION*/
+
+section {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 2em;
+    height: 80vh;
+}
+
+iframe {
+    width: 90%;
+    height: 80%;
+    border: none;
+}
+
+/*FOOTER*/
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #dd0b0bec;
+    height: 10vh;
+    width: 100%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
