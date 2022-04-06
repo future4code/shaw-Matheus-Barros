@@ -1,117 +1,50 @@
 import React from 'react';
-import axios from 'axios';
-import styled from "styled-components";
-
-const headers = {
-  headers: {
-    Authorization: "Matheus-Martinelle-Barros-Shaw"
-  }
-};
+import Register from './Components/Register'
+import ListUsers from './Components/ListUsers'
+// import styled from "styled-components";
 
 class App extends React.Component {
 
   state = {
-    inputName: "",
-    inputEmail: "",
-    users: [],
-    screen: false
+    screen: "Register",
   }
 
-  onChangeName = (event) => {
-    this.setState({ inputName: event.target.value })
-  }
+  //Função que por meio de props consegue fazer com que os outros componentes identificam qual página está, com isso, se houver interação do button do componente Register ele executará essa função, e com isso ele vai fazer com que o valor da prop screen de App mude para o valor do componente ListUsers.
+  clickChangeScreen = () => {
+    if (this.state.screen === "Register"){
+      return(this.setState({ screen: "ListUsers" }))
 
-  onChangeEmail = (event) => {
-    this.setState({ inputEmail: event.target.value })
-  }
-  
-  onClickScreen = () => {
-    this.setState({ screen: !this.state.screen })
-  }
-
-  getAllUsers() {
-    //Aqui é onde a função de get é chamada
-    //No get passamos a url, e o headers
-    axios.get("https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users", headers)
-      .then((response) => {
-      //Caso de tudo certo guarde os users no estado:
-        this.setState({ users: response.data });
-      })
-      .catch((error) => {
-      //Caso de erro exiba-o no console:
-        console.log(error.response.data);
-      });
-  }
-
-  createUser = () => {
-    //body é criado com o valor que tem no inputName e inputEmail
-    const body = {
-      name: this.state.inputName,
-      email: this.state.inputEmail
-    };
-    //Aqui é onde a função de post é chamada
-    //No post passamos a url, body, e o headers
-    axios.post("https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users", body, headers)
-      .then(() => {
-        //Pegartodas as playlists
-        this.getAllUsers();
-        //Deixar o texto do input com um valor vazio
-        this.setState({
-          inputName: "",
-          inputEmail: ""
-        });
-      })
-      .catch((error) => {
-        //Alertar caso um erro aconteça
-        alert(error.response.data.message);
-      });
-  }
-
-  deleteUser = (id) => {
-    axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`, headers)    
-      .then((res) => {
-        this.getAllUsers() 
-      })
-      .catch((err) => {
-        alert("Não foi possível deletar o usuário por causa do seguinte erro: ", err.response.data.message)
-      })
-  }
-
-  confirmDelete = (id) => {
-    if(window.confirm("Tem certeza de que deseja deletar?")) {
-      this.deleteUser (id)
+    } else {
+      return(this.setState({ screen: "Register" }))
     }
   }
 
-  componentDidMount() {
-    //Pegar todas as playlists
-    this.getAllUsers();
+  //Função que vai ser seguida após a ativação de clickChangeScreen. Esta função vai verificar o valor de screen, e em seguida, vai renderizar o componente correspondente.
+  //Props foram passadas pois os componentes contém propriedade de App (que é a função clickChangeScreen).
+  changeScreen = () => {
+    switch (this.state.screen){
+      case "Register":
+        return <Register clickChangeScreen={this.clickChangeScreen}/>
+      default: // case "ListUsers:"
+        return <ListUsers clickChangeScreen={this.clickChangeScreen}/>
+      // default:
+      // return <p>Erro! Página não encontrada.</p>
+
+      // Adicionar o default como terceiro caso em uma situação que existe apenas duas possibilidades seria apenas para termos uma resposta se algo estivesse errado no código.
+    }
   }
 
-  render() {
+  // confirmDelete = (id) => {
+  //   if(window.confirm("Tem certeza de que deseja deletar?")) {
+  //     this.deleteUser (id)
+  //   }
+  // }
 
-    const componentsUsers = this.state.users.map((user) => {
-      return(
-        <li> 
-          {user.name}  
-          <button onClick = {() => this.confirmDelete(user.id)} > X </button>
-        </li>
-      )  
-    });
+  render(){
 
-    return(
+    return (
       <div>
-        <button onClick={this.onClickScreen}> Trocar Tela </button> 
-
-        <label>
-          Novo usuário:
-          <input placeholder="Nome..." value={this.state.inputName} onChange={this.onChangeName} />
-          <input placeholder="Email..." value={this.state.inputEmail} onChange={this.onChangeEmail} />
-        </label>
-
-        <button onClick={this.createUser}> Registrar </button>
-
-        <ul>{componentsUsers}</ul>
+        {this.changeScreen()}
       </div>
     )
   }
