@@ -1,40 +1,33 @@
 import React from 'react'
-import SongDetailsPage from './pages/SongDetailsPage/SongDetailsPage'
-import SongListPage from './pages/SongListPage/SongListPage'
+import PagePlaylists from './pages/PagePlaylists/PagePlaylists'
+import PageDetails from './pages/PageDetails/PageDetails'
 
 class App extends React.Component {
   state = {
-    screen: "List",
-    clickSongURL: ""
+    screen: "Playlists",
+    idPlaylist: ""
   }
 
-  searchPlaylistDetails = (id) => {
-    this.setState({ 
-      screen: "Details",
-      clickSongURL: id 
-    })
+  playlistIdentifier = (id) => {
+    this.setState({ screen: "Details", idPlaylist: id })
   }
 
-  listPlaylists = () => {
-    this.setState({ 
-      screen: "List",
-      clickSongURL: "" 
-    })
+  playlistListPage = () => {
+    this.setState({ screen: "Playlists", idPlaylist: "" })
   }
 
   selectPage = () => {
     switch (this.state.screen){
-      case "List":
-        return <SongListPage searchPlaylistDetails={this.searchPlaylistDetails} />
+      case "Playlists":
+        return <PagePlaylists playlistIdentifier={this.playlistIdentifier} />
       case "Details":
-        return <SongDetailsPage listPlaylists={this.listPlaylists} id={this.state.clickSongURL} />
+        return <PageDetails playlistListPage={this.playlistListPage} id={this.state.idPlaylist} /> 
       default:
-        return <SongListPage searchPlaylistDetails={this.searchPlaylistDetails} />
+        return <PagePlaylists playlistIdentifier={this.playlistIdentifier} />
     }
   }
 
   render() {
-
     return(
       <div>
         {this.selectPage()}
