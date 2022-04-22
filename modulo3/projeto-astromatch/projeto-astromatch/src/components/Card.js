@@ -10,6 +10,10 @@ const CardDiv = styled.div`
     border: 5px solid #fb9221;
     border-radius: 10px;
     background-color: #b5c3c9;
+
+    @media (max-width: 800px)  {
+		width: 100%;
+    }
 `
 const CardHeader = styled.header`
     display: flex;
@@ -20,6 +24,7 @@ const CardHeader = styled.header`
 
     img {
         height: 80%;
+        width: 70%;
     }
 
     button {

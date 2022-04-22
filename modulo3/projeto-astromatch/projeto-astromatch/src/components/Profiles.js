@@ -4,26 +4,20 @@ import axios from 'axios'
 import {BASE_URL} from '../constants/api'
 
 const ProfileDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     height: 65vh;
-
-    img {
-        width: 100%;
-    }
+    background: url(${props => props.imagem});
+    background-size: cover; //Pegar toda div
+    background-repeat: no-repeat;
+    background-position: 50% 0%; //Eixo x Eixo y (ESTUDAR)
 `
 
 const DescriptionDiv = styled.div`
-    /* display: flex;
-    flex-direction: column;
-    justify-content: flex-end; */
-
-    /* box-shadow: rgb(117 117 117 / 77%) 0px 2px 10px 0px; */
-    
     background: linear-gradient(#0000, #fcc98e);
-    margin: 10px 0px;
     padding: 5px;
-    bottom: 4em;
     color: black;
-    position: relative;
 `
 
 export default function Profiles(props) {
@@ -44,14 +38,11 @@ export default function Profiles(props) {
     }, [])
 
     return(
-        <ProfileDiv>
-            <img src={profiles.photo} height={400} />
+        <ProfileDiv imagem={profiles.photo}>
             <DescriptionDiv>
-                <p> <b>{profiles.name}, {profiles.age}</b>  </p>
+                <p> {profiles.name &&  <b>{profiles.name}, {profiles.age}</b>} </p>
                 <p> {profiles.bio} </p>
             </DescriptionDiv>
-
-           
         </ProfileDiv>
     )
 }
