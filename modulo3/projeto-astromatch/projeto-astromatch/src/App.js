@@ -1,13 +1,23 @@
 import React, {useState} from 'react'
-import {createGlobalStyle} from "styled-components"
+import styled, {createGlobalStyle} from "styled-components"
 import Home from './pages/HomeScreen/Home'
 import Match from './pages/MatchScreen/Match'
+
+const GlobalDiv = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-color: #44535c;
+`
 
 const GlobalStyle = createGlobalStyle`
   *{
       margin:0px;
       padding:0px;
       box-sizing: border-box;
+  }
+
+  body{
+    font-family: Roboto, sans-serif;
   }
 `
 
@@ -35,10 +45,10 @@ function App() {
   }
   
   return(
-    <div>
+    <GlobalDiv>
       <GlobalStyle />
       {selectPage()}
-    </div>
+    </GlobalDiv>
   )
 }
 
