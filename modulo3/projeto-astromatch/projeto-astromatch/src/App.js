@@ -10,13 +10,13 @@ const GlobalDiv = styled.div`
 `
 
 const GlobalStyle = createGlobalStyle`
-  *{
-      margin:0px;
-      padding:0px;
-      box-sizing: border-box;
+  * {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
   }
 
-  body{
+  body {
     font-family: Roboto, sans-serif;
   }
 `
@@ -36,11 +36,11 @@ function App() {
   const selectPage = () => {
     switch(page){
       case "Home":
-        return <Home changePage={changePage} />
+        return <Home changePage={changePage} page={page} />
       case "Match":
-        return <Match changePage={changePage} />
+        return <Match changePage={changePage} page={page} />
       default:
-        return <Home changePage={changePage} />
+        return <Home changePage={changePage} page={page} />
     }
   }
   

@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
-import axios from 'axios'
-import {BASE_URL} from '../constants/api'
 
 const ProfileDiv = styled.div`
     display: flex;
@@ -22,26 +20,11 @@ const DescriptionDiv = styled.div`
 
 export default function Profiles(props) {
 
-    const [profiles, setProfiles] = useState({})
-
-    const getProfileToChoose = () => {
-        axios.get(`${BASE_URL}/person`)
-        .then(res => {
-            setProfiles(res.data.profile)
-            console.log(res.data.profile)
-        })
-        .catch(err => {console.log(err)})
-    }
-    
-    useEffect( () => {
-        getProfileToChoose()
-    }, [])
-
     return(
-        <ProfileDiv imagem={profiles.photo}>
+        <ProfileDiv imagem={props.profile.name && props.profile.photo}>
             <DescriptionDiv>
-                <p> {profiles.name &&  <b>{profiles.name}, {profiles.age}</b>} </p>
-                <p> {profiles.bio} </p>
+                <h2> {props.profile.name &&  <b>{props.profile.name}, {props.profile.age}</b>} </h2>
+                <h3> {props.profile.name && props.profile.bio} </h3>
             </DescriptionDiv>
         </ProfileDiv>
     )

@@ -1,3 +1,3 @@
-const student = 'Matheus-Martinelle-Barros-Shaw'
+const student = 'matheus-martinelle-barros-shaw'
 
 export const BASE_URL = `https://us-central1-missao-newton.cloudfunctions.net/astroMatch/${student}`

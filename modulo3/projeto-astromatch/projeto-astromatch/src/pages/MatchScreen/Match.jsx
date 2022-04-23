@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react'
+import Card from '../../components/Card'
 
 export default function Match(props) {
     return(
         <>
-            Aqui é o Match!
-            <button onClick={props.changePage}> Ir pra Home </button>
+            <Card changePage={props.changePage} page={props.page} /> 
         </>
     )
 }
+
+{/* <button onClick={props.changePage}> Ir pra Home </button> */}
