@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 import {BASE_URL} from '../constants/api'
@@ -19,10 +19,10 @@ const ButtonM = styled.button`
     border-radius: 50%;
     border: hidden;
     background: linear-gradient(0deg, rgba(20,167,62,1) 0%, rgba(102,247,113,1) 100%);
-    box-shadow: 0 0 20px 2px green;
+    box-shadow: 0 0 20px 3px green;
 
     &:hover{
-        box-shadow: 0 0 20px 4px green;
+        box-shadow: 0 0 20px 5px green;
     }
 
     &:active{
@@ -38,10 +38,10 @@ const ButtonR = styled.button`
     border-radius: 50%;
     border: hidden;
     background: linear-gradient(0deg,  rgba(167,20,20,100) 0%, rgba(247,100,90,100) 100%);
-    box-shadow: 0 0 20px 1px red;
+    box-shadow: 0 0 20px 3px red;
 
     &:hover{
-        box-shadow: 0 0 20px 4px red;
+        box-shadow: 0 0 20px 5px red;
     }
 
     &:active{

@@ -5,7 +5,7 @@ import { BASE_URL } from '../constants/api'
 import LogoHeader from '../images/LogoHeader.png'
 import Profiles from './Profiles'
 import Choose from './Choose'
-// import { clear } from '@testing-library/user-event/dist/clear'
+import Matches from './Matches'
 
 const CardDiv = styled.div`
     width: 30%;
@@ -49,14 +49,16 @@ export default function Card(props) {
 
     const getProfileToChoose = () => {
         axios.get(`${BASE_URL}/person`)
-            .then(res => {
-                if (res.data.profile !== null) {
-                    setProfiles(res.data.profile)
-                } else {
-                    // windown.confirm("Deseja resetar?") && clear()
-                }
-            })
-            .catch(err => { console.log(err.response) })
+        .then(res => {
+            if (res.data.profile !== null) {
+                setProfiles(res.data.profile)
+            } else {
+                // return(
+                //     <p> Não há mais perfis para Matchs. </p>
+                // ) --------------------------NÃO FUNCIONA 
+            }
+        })
+        .catch(err => { console.log(err.response) })
     }
 
     useEffect(() => {
@@ -67,10 +69,11 @@ export default function Card(props) {
         <>
             {
                 (props.page === "Home" ?
+
                     <CardDiv>
                         <CardHeader>
                             <img src={LogoHeader} alt="Logo AstroMatch" />
-                            <button onClick={props.changePage}> <b>Matchs ❤️</b> </button>
+                            <button onClick={props.changePage}> <b>Matches ❤️</b> </button>
                         </CardHeader>
 
                         <Profiles profile={profiles} />
@@ -81,9 +84,10 @@ export default function Card(props) {
                     <CardDiv>
                         <CardHeader>
                             <img src={LogoHeader} alt="Logo AstroMatch" />
-                            <button onClick={props.changePage}> <b>Matchs ❤️</b> </button>
+                            <button onClick={props.changePage}> <b>Matches ❤️</b> </button>
                         </CardHeader>
-                        <> oi </>
+
+                        <Matches />
                     </CardDiv>
                 )
             }
