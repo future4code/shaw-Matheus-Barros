@@ -1,18 +1,20 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
+import GifLoading from '../images/loading.gif'
 import axios from 'axios'
 import { BASE_URL } from '../constants/api'
 
 const MatchesDiv = styled.div`
     height: 78%;
 
-    center > button {
+    >button {
         width: 100%;
         height: 3.2em;
         cursor: pointer;
         background: linear-gradient(#0000, #fcc98e);
         padding: 5px;
         border: none;
+        margin: auto;
     }
 `
 
@@ -40,6 +42,10 @@ const ListMatchesDiv = styled.div`
         text-align: center;
         margin: auto;
     }
+
+    >img{
+        margin: auto;
+    }
 `
 
 const MatcheDiv = styled.div`
@@ -65,24 +71,21 @@ const MatcheDiv = styled.div`
     }
 `
 
-export default function Matches(){
+export default function Matches(props){
     
     const [matches, setMatches] = useState([])
-
-    const clear = () => {
-        axios.put(`${BASE_URL}/clear`)
-        .then(res => {
-            alert("Lista de matches resetada com sucesso!")
-        })
-        .catch(err => { console.log(err.response) })
-    }
+    const [loading, setLoading] = useState(true)
 
     const getMatches = () => {
         axios.get(`${BASE_URL}/matches`)
         .then(res => {
+            setLoading(false)
             setMatches(res.data.matches)
         })
-        .catch(err => { console.log(err.response) })
+        .catch(err => { 
+            setLoading(false)
+            console.log(err.response) 
+        })
     }
 
     useEffect(() => {
@@ -100,10 +103,13 @@ export default function Matches(){
     
     return(
         <MatchesDiv>
-            <center><button onClick={() => clear()}> Excluir Matches ​🗑️ </button></center>
+            <button onClick={() => props.clear()}> Excluir Matches ​🗑️ </button>
 
             <ListMatchesDiv>
             {
+                loading ?
+                <img src={GifLoading} height={100} width={150} />
+                : 
                 matches.length !== 0 ?
                 listMatches : <h1> Você ainda não tem Matches. </h1> 
             }

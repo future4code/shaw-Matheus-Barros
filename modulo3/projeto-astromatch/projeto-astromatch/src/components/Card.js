@@ -43,9 +43,21 @@ const CardHeader = styled.header`
     }
 `
 
+const ButtonClear = styled.button`
+    width: 100%;
+    height: 85%;
+    cursor: pointer;
+    background: linear-gradient(#fcc98e, #0000, #fcc98e);
+    padding: 5px;
+    border: none;
+    border-radius: 0% 0% 1% 1%;
+    margin: auto;
+`
+
 export default function Card(props) {
 
     const [profiles, setProfiles] = useState({})
+    const [noProfiles, setNoProfiles] = useState(false)
 
     const getProfileToChoose = () => {
         axios.get(`${BASE_URL}/person`)
@@ -53,10 +65,16 @@ export default function Card(props) {
             if (res.data.profile !== null) {
                 setProfiles(res.data.profile)
             } else {
-                // return(
-                //     <p> Não há mais perfis para Matchs. </p>
-                // ) --------------------------NÃO FUNCIONA 
+                setNoProfiles(true)
             }
+        })
+        .catch(err => { console.log(err.response) })
+    }
+
+    const clear = () => {
+        axios.put(`${BASE_URL}/clear`)
+        .then(res => {
+            alert("Lista de matches resetada com sucesso! Reinicie a página se necessário.")
         })
         .catch(err => { console.log(err.response) })
     }
@@ -75,10 +93,17 @@ export default function Card(props) {
                             <img src={LogoHeader} alt="Logo AstroMatch" />
                             <button onClick={props.changePage}> <b>Matches ❤️</b> </button>
                         </CardHeader>
-
-                        <Profiles profile={profiles} />
-
-                        <Choose profile={profiles} getProfileToChoose={getProfileToChoose} />
+                        {
+                            noProfiles ? 
+                            <ButtonClear onClick={clear}> 
+                                <h3>Não há mais perfis, clique pra resetar.</h3> 
+                            </ButtonClear> 
+                            :  
+                            <>
+                                <Profiles profile={profiles} />
+                                <Choose profile={profiles} getProfileToChoose={getProfileToChoose} />
+                            </>
+                        }
                     </CardDiv>
                     :
                     <CardDiv>
@@ -87,7 +112,7 @@ export default function Card(props) {
                             <button onClick={props.changePage}> <b>Matches ❤️</b> </button>
                         </CardHeader>
 
-                        <Matches />
+                        <Matches clear={clear} />
                     </CardDiv>
                 )
             }
