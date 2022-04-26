@@ -1,9 +1,10 @@
-
+// import React from 'react'  
+import { Rounter } from "./routes/Routes";
 
 function App() {
   return (
-    <div className="App">
-      oi
+    <div>
+      <Rounter />
     </div>
   );
 }
