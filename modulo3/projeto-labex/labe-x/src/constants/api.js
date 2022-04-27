@@ -1,0 +1,1 @@
+export const aluno = 'matheus-martinelle-shaw'

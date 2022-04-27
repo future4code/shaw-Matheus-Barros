@@ -1,4 +1,3 @@
-// import React from 'react'  
 import { Rounter } from "./routes/Routes";
 
 function App() {

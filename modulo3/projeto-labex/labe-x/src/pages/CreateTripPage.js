@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom"
 import { goToHomePage, goBackAdminHomePage } from "../routes/coordinator"
+import { useProtectdPage } from "../hooks/useProtectdPage"
 
 export function CreateTripPage(){
     const navigate = useNavigate()
+
+    useProtectdPage()
 
     return(
         <div>
