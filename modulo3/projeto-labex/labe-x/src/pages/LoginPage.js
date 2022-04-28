@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { goToHomePage, goToLoginPage } from "../routes/coordinator"
 import axios from "axios"
-import { aluno } from "../constants/api"
+import { BASE_URL } from "../constants/api"
 
 export function LoginPage() {
 
@@ -24,7 +24,7 @@ export function LoginPage() {
             password: password
         }
 
-        axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/${aluno}/login`, body)
+        axios.post(`${BASE_URL}/login`, body)
         .then((res) => {
             localStorage.setItem('token', res.data.token)
             alert("Autenticações autorizadas!")

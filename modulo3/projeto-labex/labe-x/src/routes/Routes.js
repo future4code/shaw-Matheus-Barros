@@ -19,6 +19,7 @@ export const Rounter = () => {
                 <Route path='/admin/trips/list' element={<AdminHomePage />} />
                 <Route path='/admin/trips/create' element={<CreateTripPage />} />
                 <Route path='/admin/trips/:id' element={<TripDetailsPage />} />
+                <Route path='*' element={"Página não encontrada!"}/>
             </Routes>
         </BrowserRouter>
     )
