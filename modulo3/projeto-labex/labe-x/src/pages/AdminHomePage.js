@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 import { useNavigate } from "react-router-dom"
-import { goToHomePage, goToCreateTripPage, goToTripDetailsPage, goToLogout } from "../routes/coordinator"
+import { goToCreateTripPage, goToTripDetailsPage } from "../routes/coordinator"
 import { useProtectdPage } from "../hooks/useProtectdPage"
 import { useGetRequestData } from "../hooks/useGetRequestData"
 import { BASE_URL } from "../constants/api"
+import HeaderAdm from '../components/headerAdm/HeaderAdm'
+import Footer from '../components/footer/Footer'
 
 const TripDiv = styled.div`
     margin: 5px;
@@ -35,14 +37,13 @@ export function AdminHomePage(){
 
     return(
         <div>
-            <button onClick={() => goToHomePage(navigate)}> Início </button>
-            <button onClick={() => goToLogout(navigate)}> Desconectar </button>
-
-            <h2> AdminHomePage </h2>
+            <HeaderAdm />
 
             {listTrips}
 
             <button onClick={() => goToCreateTripPage(navigate)}> Criar viagem </button>
+
+            <Footer />
         </div>
     )
 }

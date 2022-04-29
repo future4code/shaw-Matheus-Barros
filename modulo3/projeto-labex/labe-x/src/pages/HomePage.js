@@ -1,18 +1,14 @@
-import { useNavigate } from "react-router-dom"
-import { goToHomePage, goToListTripsPage, goToAdminHomePage, goToLoginPage } from "../routes/coordinator"
+import HeaderPublic from "../components/headerPublic/HeaderPublic"
+import MainHome from "../components/mainHome/MainHome"
+import Footer from "../components/footer/Footer"
 
-export function HomePage(){
-    const navigate = useNavigate()
+export function HomePage() {
 
     return(
         <div>
-            <h2> Home Page </h2>
-
-            <button onClick={() => goToHomePage(navigate)}> Início </button>
-            <button onClick={() => goToAdminHomePage(navigate)}> Área administrativa </button>
-
-            <button onClick={() => goToListTripsPage(navigate)}> Viagens </button>
-            <button onClick={() => goToLoginPage(navigate)}> Login </button>
+            <HeaderPublic />
+            <MainHome />
+            <Footer />
         </div>
     )
 }

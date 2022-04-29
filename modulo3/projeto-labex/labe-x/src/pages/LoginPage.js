@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom"
-import { goToHomePage, goToAdminHomePage } from "../routes/coordinator"
 import axios from "axios"
 import { BASE_URL } from "../constants/api"
 import { useForm } from "../hooks/useForm"
+import HeaderPublic from "../components/headerPublic/HeaderPublic"
 
 export function LoginPage() {
 
@@ -27,8 +27,8 @@ export function LoginPage() {
 
     return(
         <div>
-            <button onClick={() => goToHomePage(navigate)}> Início </button>
-            <button onClick={() => goToAdminHomePage(navigate)}> Área administrativa </button>
+            <HeaderPublic />
+
             <h2> Login Page </h2>
 
             <br/>

@@ -24,7 +24,6 @@ export const goToLoginPage = (navigate) => {
 export const goToLogout = (navigate) => {
     window.localStorage.clear('token') 
     navigate("/login")
-    /*.clear() - método de localStorage*/
 }
 
 export const goToAdminHomePage = (navigate) => {

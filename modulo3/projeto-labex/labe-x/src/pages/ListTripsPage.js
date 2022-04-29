@@ -1,8 +1,10 @@
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
-import { goToHomePage, goToAdminHomePage, goToApplicationFormPage } from "../routes/coordinator"
+import { goToApplicationFormPage } from "../routes/coordinator"
 import { useGetRequestData } from "../hooks/useGetRequestData"
 import { BASE_URL } from "../constants/api"
+import HeaderPublic from "../components/headerPublic/HeaderPublic"
+import Footer from "../components/footer/Footer"
 
 const TripDiv = styled.div`
     margin: 5px;
@@ -29,14 +31,15 @@ export function ListTripsPage(){
 
     return(
         <div>
-            <button onClick={() => goToHomePage(navigate)}> Início </button>
-            <button onClick={() => goToAdminHomePage(navigate)}> Área administrativa </button>
+            <HeaderPublic />
 
             <h2> ListTripsPage </h2>
 
             {listTrips}
             
             <button onClick={() => goToApplicationFormPage(navigate)}> Candidatar-se </button>
+
+            <Footer />
         </div>
     )
 }
