@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { goToHomePage, goToLoginPage, goToListTripsPage } from "../routes/coordinator"
+import { goToHomePage, goToListTripsPage, goToAdminHomePage, goToLoginPage } from "../routes/coordinator"
 
 export function HomePage(){
     const navigate = useNavigate()
@@ -8,9 +8,11 @@ export function HomePage(){
         <div>
             <h2> Home Page </h2>
 
-            <button onClick={() => goToHomePage(navigate)}> Home </button>
-            <button onClick={() => goToLoginPage(navigate)}> Login </button>
+            <button onClick={() => goToHomePage(navigate)}> Início </button>
+            <button onClick={() => goToAdminHomePage(navigate)}> Área administrativa </button>
+
             <button onClick={() => goToListTripsPage(navigate)}> Viagens </button>
+            <button onClick={() => goToLoginPage(navigate)}> Login </button>
         </div>
     )
 }

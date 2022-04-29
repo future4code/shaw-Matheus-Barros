@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
-import { goToHomePage, goToLoginPage, goToApplicationFormPage } from "../routes/coordinator"
-import { GetRequestData } from "../hooks/useGetRequestData"
+import { goToHomePage, goToAdminHomePage, goToApplicationFormPage } from "../routes/coordinator"
+import { useGetRequestData } from "../hooks/useGetRequestData"
 import { BASE_URL } from "../constants/api"
 
 const TripDiv = styled.div`
@@ -13,11 +13,11 @@ export function ListTripsPage(){
 
     const navigate = useNavigate()
 
-    const data = GetRequestData([], `${BASE_URL}/trips`)
+    const data = useGetRequestData([], `${BASE_URL}/trips`)
 
     const listTrips = data.map((trip) => {
         return(
-            <TripDiv>
+            <TripDiv key={trip.name}>
                 <h1> {trip.name} </h1>
                 <p> "{trip.description}" </p>
                 <p> Destino: {trip.planet} </p>
@@ -29,8 +29,8 @@ export function ListTripsPage(){
 
     return(
         <div>
-            <button onClick={() => goToHomePage(navigate)}> Home </button>
-            <button onClick={() => goToLoginPage(navigate)}> Login </button>
+            <button onClick={() => goToHomePage(navigate)}> Início </button>
+            <button onClick={() => goToAdminHomePage(navigate)}> Área administrativa </button>
 
             <h2> ListTripsPage </h2>
 

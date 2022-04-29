@@ -1,30 +1,19 @@
-import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { goToHomePage, goToLoginPage } from "../routes/coordinator"
+import { goToHomePage, goToAdminHomePage } from "../routes/coordinator"
 import axios from "axios"
 import { BASE_URL } from "../constants/api"
+import { useForm } from "../hooks/useForm"
 
 export function LoginPage() {
 
     const navigate = useNavigate()
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
 
-    const onChangeEmail = (event) => {
-        setEmail(event.target.value)
-    }
+    const { form, onChange } = useForm({email:"", password:""})
 
-    const onChangePassword = (event) => {
-        setPassword(event.target.value)
-    }
-
-    const onSubmitLogin = () => {
-        const body = {
-            email: email,
-            password: password
-        }
-
-        axios.post(`${BASE_URL}/login`, body)
+    const onSubmitLogin = (event) => {
+        event.preventDefault()
+         
+        axios.post(`${BASE_URL}/login`, form)
         .then((res) => {
             localStorage.setItem('token', res.data.token)
             alert("Autenticações autorizadas!")
@@ -38,26 +27,32 @@ export function LoginPage() {
 
     return(
         <div>
+            <button onClick={() => goToHomePage(navigate)}> Início </button>
+            <button onClick={() => goToAdminHomePage(navigate)}> Área administrativa </button>
             <h2> Login Page </h2>
-            <button onClick={() => goToHomePage(navigate)}> Home </button>
-            <button onClick={() => goToLoginPage(navigate)}> Login </button>
 
             <br/>
-            
-            <input 
-                placeholder="email"
-                type="email"
-                value={email}
-                onChange={onChangeEmail}
-            />
-            <input 
-                placeholder="password"
-                type="password"
-                value={password}
-                onChange={onChangePassword}
-            />
 
-            <button onClick={onSubmitLogin}> Conectar </button>
+            <form onSubmit={onSubmitLogin}>
+                <input 
+                    name={'email'}
+                    placeholder="email"
+                    type="email"
+                    value={form.email}
+                    onChange={onChange}
+                    required
+                />
+                <input 
+                    name={'password'}
+                    placeholder="password"
+                    type="password"
+                    value={form.password}
+                    onChange={onChange}
+                    required
+                />
+
+                <button> Conectar </button>
+            </form>
         </div>
     )
 }

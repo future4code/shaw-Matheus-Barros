@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import { useNavigate } from "react-router-dom"
-import { goToHomePage, goToCreateTripPage, goToTripDetailsPage } from "../routes/coordinator"
+import { goToHomePage, goToCreateTripPage, goToTripDetailsPage, goToLogout } from "../routes/coordinator"
 import { useProtectdPage } from "../hooks/useProtectdPage"
-import { GetRequestData } from "../hooks/useGetRequestData"
+import { useGetRequestData } from "../hooks/useGetRequestData"
 import { BASE_URL } from "../constants/api"
 
 const TripDiv = styled.div`
@@ -18,7 +18,7 @@ export function AdminHomePage(){
 
     useProtectdPage()
 
-    const data = GetRequestData([], `${BASE_URL}/trips`)
+    const data = useGetRequestData([], `${BASE_URL}/trips`)
 
     const listTrips = data.map((trip) => {
         return(
@@ -35,8 +35,8 @@ export function AdminHomePage(){
 
     return(
         <div>
-            <button onClick={() => goToHomePage(navigate)}> Home </button>
-            <button> Logout </button>
+            <button onClick={() => goToHomePage(navigate)}> Início </button>
+            <button onClick={() => goToLogout(navigate)}> Desconectar </button>
 
             <h2> AdminHomePage </h2>
 
