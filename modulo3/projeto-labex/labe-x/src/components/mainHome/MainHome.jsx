@@ -1,7 +1,7 @@
 import { MainHomeDiv } from "./styled"
 import { useNavigate } from "react-router-dom"
 import { goToListTripsPage, goToLoginPage } from "../../routes/coordinator"
-import AstroHome from "../../assets/AstroHome.png"
+import AstroHome from "../../images/AstroHome.png"
 
 export default function MainHome() {
 
