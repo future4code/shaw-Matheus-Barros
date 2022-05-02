@@ -4,6 +4,7 @@ import { goToCreateTripPage, goToTripDetailsPage } from "../routes/coordinator"
 import { useProtectdPage } from "../hooks/useProtectdPage"
 import { useGetRequestData } from "../hooks/useGetRequestData"
 import { BASE_URL } from "../constants/api"
+import axios from 'axios'
 import HeaderAdm from '../components/headerAdm/HeaderAdm'
 import Footer from '../components/footer/Footer'
 
@@ -20,9 +21,24 @@ export function AdminHomePage(){
 
     useProtectdPage()
 
-    const data = useGetRequestData([], `${BASE_URL}/trips`)
+    const trips = useGetRequestData([], `${BASE_URL}/trips`)
 
-    const listTrips = data.map((trip) => {
+    const deleteTrip = (id) => {
+        const token = localStorage.getItem("token");
+        const headers = {
+            headers: {
+                auth: token
+            }
+        }
+    
+        axios.delete(`${BASE_URL}/trips/${id}`, headers)
+        .then((res) => {
+            alert("Viagem deletada com sucesso, atualize a página!")
+        })
+        .catch((err) => { console.log(err.response.data) })
+    }
+
+    const listTrips = trips.map((trip) => {
         return(
             <TripDiv key={trip.id}>
                 <h1> {trip.name} </h1>
@@ -31,6 +47,7 @@ export function AdminHomePage(){
                 <p> Duração: {trip.durationInDays} dias </p>
                 <p> Data: {trip.date} </p>
                 <button onClick={() => goToTripDetailsPage(navigate, trip.id)}> Candidatos </button>
+                <button onClick={() => deleteTrip(trip.id)}> Excluir </button>
             </TripDiv>
         )
     })

@@ -15,9 +15,9 @@ export function ListTripsPage(){
 
     const navigate = useNavigate()
 
-    const data = useGetRequestData([], `${BASE_URL}/trips`)
+    const trips = useGetRequestData([], `${BASE_URL}/trips`)
 
-    const listTrips = data.map((trip) => {
+    const listTrips = trips.map((trip) => {
         return(
             <TripDiv key={trip.name}>
                 <h1> {trip.name} </h1>
