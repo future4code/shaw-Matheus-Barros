@@ -10,10 +10,6 @@ export const goToFeedPage = (navigate) => {
     navigate("/feed")
 }
 
-export const goToPostPage = (navigate) => {
+export const goToPostPage = (navigate, id) => {
     navigate(`/feed/post/${id}`)
-}
-
-export const goBack = (navigate) => {
-    navigate(-1)
 }

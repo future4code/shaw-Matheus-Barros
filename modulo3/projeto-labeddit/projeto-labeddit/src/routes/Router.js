@@ -5,7 +5,7 @@ import { FeedPage } from "../pages/Feed/FeedPage"
 import { PostPage } from "../pages/PostPage/PostPage"
 import { ErroPage } from "../pages/Erro/ErroPage"
 
-export function Router() {
+function Router() {
     return(
         <BrowserRouter>
             <Routes>
@@ -18,3 +18,5 @@ export function Router() {
         </BrowserRouter>
     )
 }
+
+export default Router
