@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom"
 import { goToLoginPage } from "../../routes/coordinator"
+import useProtectdPage from "../../hooks/useProtectdPage"
 
 export function FeedPage() {
+    
+    useProtectdPage()
 
     const navigate = useNavigate()
 
