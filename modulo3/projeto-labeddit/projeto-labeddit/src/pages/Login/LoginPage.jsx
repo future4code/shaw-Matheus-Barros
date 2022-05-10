@@ -15,7 +15,6 @@ export function LoginPage() {
     const navigate = useNavigate()
 
     const onSubmitForm = (event) => {
-        console.log(form)
         event.preventDefault()
         login(form, navigate)
     }

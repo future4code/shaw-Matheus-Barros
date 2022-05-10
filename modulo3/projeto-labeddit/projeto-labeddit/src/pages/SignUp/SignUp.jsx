@@ -15,7 +15,6 @@ export function SignUpPage() {
     const navigate = useNavigate()
 
     const onSubmitForm = (event) => {
-        console.log(form)
         event.preventDefault()
         signup(form, navigate)
     }
@@ -28,7 +27,6 @@ export function SignUpPage() {
 
             <FormSubmit onSubmit={onSubmitForm}>
                 <input placeholder="Nome"
-                    type={"username"}
                     name="username"
                     value={form.username}
                     onChange={onChange}
@@ -46,6 +44,8 @@ export function SignUpPage() {
                     name="password"
                     value={form.password}
                     onChange={onChange}
+                    // pattern={"^.{8, 30}$"} --- Não funciona pq a API já tem tal critério? ---
+                    // title="Senha deve possuir no mínimo 8 e no máximo 30 caracteres."
                     required 
                 />
 
