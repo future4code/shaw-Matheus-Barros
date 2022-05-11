@@ -1,13 +1,21 @@
-import { useNavigate } from "react-router-dom"
-import { goToLoginPage } from "../../routes/coordinator"
 import useProtectdPage from "../../hooks/useProtectdPage"
 import Header from "../../components/header/Header"
+import { BASE_URL } from "../../constants/url"
+import { useGetRequestData } from "../../hooks/useRequestData"
 
 export function FeedPage() {
     
     useProtectdPage()
+    const posts = useGetRequestData([], `${BASE_URL}/posts`)
+    console.log(posts)
 
-    const navigate = useNavigate()
+    const listPosts = posts && posts.map((post) => {
+        return(
+            <div key={post.id}>
+                {post.title}
+            </div>
+        )
+    })
 
     return(
         <>
@@ -18,6 +26,8 @@ export function FeedPage() {
             <input placeholder="Escreva seu post..." />
 
             <button> Postar </button>
+
+            {listPosts}
         </>
     )
 }

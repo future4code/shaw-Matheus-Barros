@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom"
-import { goToLoginPage } from "../../routes/coordinator"
 
 export function ErroPage() {
 
@@ -7,7 +6,7 @@ export function ErroPage() {
 
     return(
         <>
-            <button onClick={() => goToLoginPage(navigate)}> Desconectar </button>
+            <button onClick={() => navigate(-1)}> Voltar </button>
 
             <h1> Página não encontrada... </h1>
         </>

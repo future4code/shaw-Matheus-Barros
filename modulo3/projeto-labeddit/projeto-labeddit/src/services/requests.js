@@ -10,7 +10,7 @@ export const login = (body, navigate) => {
         goToFeedPage(navigate)
     })
     .catch((err) => {
-        alert("Erro no login.")
+        alert(err.response.data)
     })
 }
 
@@ -22,6 +22,6 @@ export const signup = (body, navigate) => {
         goToFeedPage(navigate)
     })
     .catch((err) => {
-        alert("Senha deve possuir no mínimo 8 e no máximo 30 caracteres.")
+        alert(err.response.data)
     })
 }

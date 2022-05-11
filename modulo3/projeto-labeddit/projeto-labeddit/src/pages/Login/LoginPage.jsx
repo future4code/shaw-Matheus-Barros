@@ -31,6 +31,8 @@ export function LoginPage() {
                     name="email"
                     value={form.email}
                     onChange={onChange}
+                    pattern={"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"}
+                    title={"Email deve possuir um . e no mínimo 2 e no máximo 4 caracteres em seguida no final"}
                     required 
                 />
                 <input placeholder="Senha"
@@ -38,6 +40,8 @@ export function LoginPage() {
                     name="password"
                     value={form.password}
                     onChange={onChange}
+                    pattern={"^.{8,30}$"}
+                    title={"Senha deve possuir no mínimo 8 e no máximo 30 caracteres"}
                     required 
                 />
 
