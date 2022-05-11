@@ -4,8 +4,8 @@ export const LoginContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100vw;
-    margin-top: 15px;
+    max-height: 100vh;
+    padding-top: 15px;
 `
 
 export const LogoImg = styled.img`
