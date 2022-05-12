@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 
-const useRequestData = (stateInitial, url) => {
+const useRequestData = (update, stateInitial, url) => {
     const [data, setData] = useState(stateInitial)
 
     useEffect(() => {
@@ -13,7 +13,7 @@ const useRequestData = (stateInitial, url) => {
         .catch((err) => {
             console.log('Deu ruim: ', err.response.data)
         })
-    }, [url])
+    }, [update])
 
     return data
 }

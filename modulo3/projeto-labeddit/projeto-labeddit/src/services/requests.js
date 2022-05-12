@@ -25,3 +25,14 @@ export const signup = (body, navigate) => {
         alert(err.response.data)
     })
 }
+
+export const newPost = (setUpdate, update, body, headers, clear) => {
+    axios.post(`${BASE_URL}/posts`, body, headers)
+    .then((res) => {
+        setUpdate(!update)
+        alert(res.data)
+        console.log(res.data)
+        clear()
+    })
+    .catch((err) => console.log(err.response))
+}

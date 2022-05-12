@@ -5,13 +5,26 @@ import useRequestData from "../../hooks/useRequestData"
 import { useState } from "react"
 import { PostPage } from "../PostPage/PostPage"
 import { DivPost } from "./style"
+import useForm from "../../hooks/useForm"
+import { newPost } from "../../services/requests"
 
 export function FeedPage() {
 
     useProtectdPage()
-    const posts = useRequestData([], `${BASE_URL}/posts`)
+    const { form, onChange, clear } = useForm({title: "", body: ""})
+    const [update, setUpdate] = useState(false)
+    const posts = useRequestData(update, [], `${BASE_URL}/posts`)
     const [showModal, setShowModal] = useState(false)
     const [idModal, setIdModal] = useState("")
+
+    const onSubmitNewPost = (event) => {
+        event.preventDefault()
+
+        const token = localStorage.getItem('token')
+        const headers = {headers: {Authorization: token}}
+
+        newPost(setUpdate, update, form, headers, clear)
+    }
 
     const showPostDetails = (id) => {
         setIdModal(id)    
@@ -28,15 +41,27 @@ export function FeedPage() {
 
     return (
         <>
+            <Header />
             <div>
-                <Header />
+                <h1> Criar publicação </h1>
 
-                <h1> Feed Page </h1>
+                <form onSubmit={onSubmitNewPost}>
+                    <input placeholder="Título do assunto"
+                        name="title"
+                        value={form.title}
+                        onChange={onChange}
+                        required 
+                    />
+                    <input placeholder="Descrição do assunto..."
+                        name="body"
+                        value={form.body}
+                        onChange={onChange}
+                    />
 
-                <input placeholder="Escreva seu post..." />
-
-                <button> Postar </button>
-
+                    <button type={"submit"}> Publicar </button>
+                </form>
+            </div>
+            <div>
                 {listPosts}
             </div>
 
