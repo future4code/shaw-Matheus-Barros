@@ -1,19 +1,28 @@
-import { useNavigate } from "react-router-dom"
-import Header from "../../components/header/Header"
+import { BASE_URL } from "../../constants/url"
 import useProtectdPage from "../../hooks/useProtectdPage"
-import { goToLoginPage, goToFeedPage } from "../../routes/coordinator"
+import useRequestData from "../../hooks/useRequestData"
+import { DivDetails } from "./style"
 
-export function PostPage() {
+export function PostPage(props) {
 
     useProtectdPage()
+    const details = useRequestData([], `${BASE_URL}/posts/${props.idModal}/comments`)
 
-    const navigate = useNavigate()
+    const detailsPost = details && details.map((detail) => {
+        return (
+            <>
+                <DivDetails >
+                    {detail.body}
+                </DivDetails>
+            </>
+        )
+    })
 
-    return(
+    return (
         <>
-            <Header page={"page"}/>
-        
-            <h1> Post Page </h1>
+            <div onClick={() => props.setShowModal(false)}> X </div>
+            <p> Comentários </p>
+            {detailsPost}
         </>
     )
 }

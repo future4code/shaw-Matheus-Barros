@@ -30,10 +30,7 @@ function Header(props) {
                 </Button>
             </HeaderDiv>
             :
-            <HeaderDiv page={props.page}>
-                {props.page && 
-                    <button onClick={() => navigate(-1)}> X </button>
-                }
+            <HeaderDiv>
 
                 <LogoImg>
                     <img src={logo} alt={"Logo Labeddit"} />
