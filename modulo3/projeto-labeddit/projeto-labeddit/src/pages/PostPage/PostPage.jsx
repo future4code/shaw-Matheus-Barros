@@ -1,8 +1,8 @@
-import { BASE_URL } from "../../constants/url"
 import useProtectdPage from "../../hooks/useProtectdPage"
 import useRequestData from "../../hooks/useRequestData"
-import { DivDetails } from "./style"
+import { BASE_URL } from "../../constants/url"
 import { useState } from "react"
+import { DivDetails, DivComments  } from "./style"
 
 export function PostPage(props) {
 
@@ -12,17 +12,17 @@ export function PostPage(props) {
 
     const detailsPost = details && details.map((detail) => {
         return (
-            <DivDetails >
+            <DivDetails>
                 {detail.body}
             </DivDetails>
         )
     })
 
     return (
-        <>
+        <DivComments>
             <div onClick={() => props.setShowModal(false)}> X </div>
             <p> Comentários </p>
             {detailsPost}
-        </>
+        </DivComments>
     )
 }

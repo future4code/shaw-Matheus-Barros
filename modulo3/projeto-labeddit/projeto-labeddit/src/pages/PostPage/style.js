@@ -7,3 +7,10 @@ export const DivDetails = styled.div`
     margin: 15px auto;
     border-radius: 30px;
 `
+
+export const DivComments = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: whitesmoke;
+`
