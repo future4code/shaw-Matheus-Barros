@@ -26,31 +26,38 @@ export const signup = (body, navigate) => {
     })
 }
 
-export const newPost = (setUpdate, update, body, headers, clear) => {
-    axios.post(`${BASE_URL}/posts`, body, headers)
+export const newPosts = (setUpdate, update, body, headers, endpoint, clear) => {
+    axios.post(`${BASE_URL}/${endpoint}`, body, headers)
     .then((res) => {
         setUpdate(!update)
         alert(res.data)
-        clear()
+        clear && clear()
     })
     .catch((err) => console.log(err.response))
 }
 
-export const newComment = (id, update, setUpdate, body, headers, clear) => {
-    axios.post(`${BASE_URL}/posts/${id}/comments`, body, headers)
+export const attPostVote = (setUpdate, update, body, headers, endpoint) => {
+    axios.put(`${BASE_URL}/${endpoint}`, body, headers)
     .then((res) => {
         setUpdate(!update)
         alert(res.data)
-        clear()
     })
     .catch((err) => console.log(err.response))
 }
 
-export const newPostVote = (id, update, setUpdate, body, headers) => {
-    axios.post(`${BASE_URL}/posts/${id}/votes`, body, headers)
+export const delPostVote = (setUpdate, update, headers, endpoint) => {
+    axios.delete(`${BASE_URL}/${endpoint}`, headers)
     .then((res) => {
         setUpdate(!update)
         alert(res.data)
     })
-    .catch((err) => console.log(err))
+    .catch((err) => console.log(err.response))
+}
+
+export const postVote = (setUpdate, update, headers, endpoint, userVote, value) => {
+    const body = {direction: value}
+    
+    userVote === null && newPosts(setUpdate, update, body, headers, endpoint)
+    userVote !== value && attPostVote(setUpdate, update, body, headers, endpoint)
+    userVote === value && delPostVote(setUpdate, update, headers, endpoint)
 }

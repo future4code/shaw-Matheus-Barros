@@ -1,15 +1,14 @@
 import useProtectdPage from "../../hooks/useProtectdPage"
 import useRequestData from "../../hooks/useRequestData"
 import { BASE_URL } from "../../constants/url"
-import { useState } from "react"
-import { DivComments, FormComment, DivDetails } from "./style"
-import { newComment } from "../../services/requests"
+import { DivComments, ModalComments, FormComment, DivDetails, ScrollContainer, DivDetailsFeed } from "./style"
+import { newPosts, postVote } from "../../services/requests"
 import useForm from "../../hooks/useForm"
 
 export function PostPage(props) {
 
     useProtectdPage()
-    const details = useRequestData(props.update, [], `${BASE_URL}/posts/${props.idModal}/comments`) //ctrl H para trocar o nome para comments?
+    const comments = useRequestData(props.update, [], `${BASE_URL}/posts/${props.dataModal.id}/comments`)
     const { form, onChange, clear } = useForm({body: ""})
 
     const onSubmitNewComment = (event) => {
@@ -19,33 +18,52 @@ export function PostPage(props) {
         const headers = {headers: {Authorization: token}}
         console.log(headers)
 
-        newComment(props.idModal, props.update, props.setUpdate, form, headers, clear)
+        newPosts(props.setUpdate, props.update, form, headers, `posts/${props.dataModal.id}/comments`, clear)
     }
 
-    const detailsPost = details && details.map((detail) => {
+    const commentVote = (endpoint, userVote, value) => {
+        
+        const token = localStorage.getItem('token')
+        const headers = {headers: {Authorization: token}}
+
+        postVote(props.setUpdate, props.update, headers, endpoint, userVote, value)
+    }
+
+    const detailsPost = comments && comments.map((comment) => {
         return (
-            <DivDetails key={detail.id}>
-                {detail.body}
+            <DivDetails key={comment.id}>
+                {comment.body}
+                <button onClick={() => commentVote(`comments/${comment.id}/votes`, comment.userVote, 1)}> Like </button>
+                <span>{comment.voteSum ? comment.voteSum : 0}</span>
+                <button onClick={() => commentVote(`comments/${comment.id}/votes`, comment.userVote, -1)}> Deslike </button>
             </DivDetails>
         )
     })
 
     return (
         <DivComments>
-            <button onClick={() => props.setShowModal(false)}> X </button>
+            <ModalComments>
+                <button onClick={() => props.setShowModal(false)}> X </button>
 
-            <FormComment onSubmit={onSubmitNewComment}>
-                <input placeholder="Escreva um comentário..."
-                    name="body"
-                    value={form.body}
-                    onChange={onChange}
-                />
+                <DivDetailsFeed>
+                    {props.dataModal.body}
+                </DivDetailsFeed>
 
-                <button type={"submit"}> Comentar </button>
-            </FormComment>
+                <FormComment onSubmit={onSubmitNewComment}>
+                    <input placeholder="Escreva um comentário..."
+                        name="body"
+                        value={form.body}
+                        onChange={onChange}
+                    />
 
-            <p> Comentários </p>
-            {detailsPost}
+                    <button type={"submit"}> Comentar </button>
+                </FormComment>
+
+                <p> Comentários </p>
+                <ScrollContainer>
+                    {detailsPost}
+                </ScrollContainer>
+            </ModalComments>
         </DivComments>
     )
 }

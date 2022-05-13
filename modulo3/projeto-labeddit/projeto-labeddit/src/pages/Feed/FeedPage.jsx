@@ -6,7 +6,7 @@ import { useState } from "react"
 import { PostPage } from "../PostPage/PostPage"
 import { DivPost } from "./style"
 import useForm from "../../hooks/useForm"
-import { newPost, newPostVote } from "../../services/requests"
+import { newPosts, postVote } from "../../services/requests"
 
 export function FeedPage() {
 
@@ -15,7 +15,7 @@ export function FeedPage() {
     const [update, setUpdate] = useState(false)
     const posts = useRequestData(update, [], `${BASE_URL}/posts`)
     const [showModal, setShowModal] = useState(false)
-    const [idModal, setIdModal] = useState("")
+    const [dataModal, setDataModal] = useState("")
 
     const onSubmitNewPost = (event) => {
         event.preventDefault()
@@ -23,31 +23,36 @@ export function FeedPage() {
         const token = localStorage.getItem('token')
         const headers = {headers: {Authorization: token}}
 
-        newPost(setUpdate, update, form, headers, clear)
+        newPosts(setUpdate, update, form, headers, "posts", clear)
     }
 
-    const postVote = (event) => {
-        event.preventDefault()
+    const feedVote = (endpoint, userVote, value) => {
         
-        const body = {direction: 1}
         const token = localStorage.getItem('token')
         const headers = {headers: {Authorization: token}}
 
-        newPostVote(idModal, update, setUpdate, body, headers)
+        postVote(setUpdate, update, headers, endpoint, userVote, value)
     }
 
-    const showPostDetails = (id) => {
-        setIdModal(id)    
+    const showPostDetails = (post) => {
+        setDataModal(post)    
         setShowModal(true)
     }
 
     const listPosts = posts && posts.map((post) => {
         return (
-            <DivPost key={post.id} onClick={() => showPostDetails(post.id)}> {/* onClick botar em outro lugar pq a div terá outros botões */}
-                {post.username}
-                <br/>
-                {post.title}
-                <button onClick={postVote}> Like </button>
+            <DivPost key={post.id} > {/* onClick botar em outro lugar pq a div terá outros botões */}
+                <div onClick={() => showPostDetails(post)}>
+                    {post.username}
+                    <br/>
+                    {post.title}
+                </div>
+                <div>
+                    <button onClick={() => feedVote(`posts/${post.id}/votes`, post.userVote, 1)}> Like </button>
+                    <span>{post.voteSum ? post.voteSum : 0}</span>
+                    <button onClick={() => feedVote(`posts/${post.id}/votes`, post.userVote, -1)}> Deslike </button>
+                </div>
+                <button onClick={() => showPostDetails(post)}> Comentários {post.commentCount}</button>
             </DivPost>
         )
     })
@@ -79,7 +84,7 @@ export function FeedPage() {
             </div>
 
             {showModal && <PostPage 
-                idModal={idModal} 
+                dataModal={dataModal} 
                 setShowModal={setShowModal} 
                 update={update} 
                 setUpdate={setUpdate} 
