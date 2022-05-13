@@ -34,11 +34,13 @@ export function FeedPage() {
     const listPosts = posts && posts.map((post) => {
         return (
             <DivPost key={post.id} onClick={() => showPostDetails(post.id)}> {/* onClick botar em outro lugar pq a div terá outros botões */}
+                {post.username}
+                <br/>
                 {post.title}
             </DivPost>
         )
     })
-
+    
     return (
         <>
             <Header />
@@ -65,7 +67,13 @@ export function FeedPage() {
                 {listPosts}
             </div>
 
-            {showModal && <PostPage idModal={idModal} setShowModal={setShowModal}/>}
+            {showModal && <PostPage 
+                idModal={idModal} 
+                setShowModal={setShowModal} 
+                update={update} 
+                setUpdate={setUpdate} 
+            />
+            }
         </>
     )
 }
