@@ -6,7 +6,7 @@ import { useState } from "react"
 import { PostPage } from "../PostPage/PostPage"
 import { DivPost } from "./style"
 import useForm from "../../hooks/useForm"
-import { newPost } from "../../services/requests"
+import { newPost, newPostVote } from "../../services/requests"
 
 export function FeedPage() {
 
@@ -26,6 +26,16 @@ export function FeedPage() {
         newPost(setUpdate, update, form, headers, clear)
     }
 
+    const postVote = (event) => {
+        event.preventDefault()
+        
+        const body = {direction: 1}
+        const token = localStorage.getItem('token')
+        const headers = {headers: {Authorization: token}}
+
+        newPostVote(idModal, update, setUpdate, body, headers)
+    }
+
     const showPostDetails = (id) => {
         setIdModal(id)    
         setShowModal(true)
@@ -37,6 +47,7 @@ export function FeedPage() {
                 {post.username}
                 <br/>
                 {post.title}
+                <button onClick={postVote}> Like </button>
             </DivPost>
         )
     })

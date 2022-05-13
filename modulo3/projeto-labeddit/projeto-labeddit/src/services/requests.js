@@ -31,7 +31,6 @@ export const newPost = (setUpdate, update, body, headers, clear) => {
     .then((res) => {
         setUpdate(!update)
         alert(res.data)
-        console.log(res.data)
         clear()
     })
     .catch((err) => console.log(err.response))
@@ -42,8 +41,16 @@ export const newComment = (id, update, setUpdate, body, headers, clear) => {
     .then((res) => {
         setUpdate(!update)
         alert(res.data)
-        console.log(res.data)
         clear()
     })
     .catch((err) => console.log(err.response))
+}
+
+export const newPostVote = (id, update, setUpdate, body, headers) => {
+    axios.post(`${BASE_URL}/posts/${id}/votes`, body, headers)
+    .then((res) => {
+        setUpdate(!update)
+        alert(res.data)
+    })
+    .catch((err) => console.log(err))
 }
