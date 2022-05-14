@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/system";
+import { createTheme } from "@mui/material/styles";
 import { primaryColor, neutralColor } from "./colors"
 
 const theme = createTheme({
@@ -10,6 +10,9 @@ const theme = createTheme({
         text: {
             primary: neutralColor,
         }
+    },
+    typography: {
+        fontFamily: 'IBM Plex Sans',
     }
 });
 
