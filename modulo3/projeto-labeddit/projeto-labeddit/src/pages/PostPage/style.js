@@ -22,36 +22,70 @@ export const ModalComments = styled.div`
     padding: 10px;
     box-shadow: 0 0 5px 0 black;
     background-color: whitesmoke;
-    border: 1px solid lightsalmon;
+    border-radius: 5px;
     height: 90%;
     width: 80%;
-`
 
-export const FormComment = styled.form`
-    margin-top: 10px;
-`
-
-export const DivDetails = styled.div`
-    height: 10vh;
-    width: 80%;
-    border: 1px solid black;
-    margin: 10px auto;
-    border-radius: 30px;
-    padding: 10px;
-    word-wrap: break-word;
-`
-
-export const ScrollContainer = styled.div`
-    display:flex;   
-    overflow: auto;  
-    flex: none;   
-    flex-flow: column nowrap;
-    overflow-y: scroll;   
-    height:80%; 
-    width: 100%;
+    >button{
+        margin-bottom: 15px;
+        border: none;
+    }
 `
 
 export const DivDetailsFeed = styled.div`
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 93%;
+    max-width: 93%;
     word-wrap: break-word;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #e3e1e1;
 ` 
+
+export const FormComment = styled.form`
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    width: 100%;
+`
+
+export const ScrollContainer = styled.div`
+    overflow: auto; 
+    overflow-y: scroll;   
+    height: 48%; 
+    width: 100%;
+    margin: 20px 0;
+`
+
+export const DivDetails = styled.div`
+    display: flex;
+    flex-direction: column;
+    min-width: 93%;
+    max-width: 93%;
+    border: 1px solid grey;
+    border-radius: 3px;
+    padding: 8px;
+    word-wrap: break-word;
+    gap: 10px;
+    margin: 10px 0;
+    p{
+        margin: 0;
+        margin-bottom: 5px;
+        color: #6F6F6F;
+        font-weight: bold;
+        font-size: 14px;
+    }
+`
+
+export const DivVote = styled.div`
+    display: flex;
+    align-items: center;
+    padding-top: 5px;
+    button{
+        border: none;
+        gap: 10px;
+    }
+`

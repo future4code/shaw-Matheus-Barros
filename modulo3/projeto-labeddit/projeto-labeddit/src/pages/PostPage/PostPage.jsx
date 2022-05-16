@@ -1,9 +1,14 @@
 import useProtectdPage from "../../hooks/useProtectdPage"
 import useRequestData from "../../hooks/useRequestData"
 import { BASE_URL } from "../../constants/url"
-import { DivComments, ModalComments, FormComment, DivDetails, ScrollContainer, DivDetailsFeed } from "./style"
+import { DivComments, ModalComments, FormComment, DivDetails, ScrollContainer, DivDetailsFeed, DivVote } from "./style"
 import { newPosts, postVote } from "../../services/requests"
 import useForm from "../../hooks/useForm"
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 
 export function PostPage(props) {
 
@@ -32,10 +37,20 @@ export function PostPage(props) {
     const detailsPost = comments && comments.map((comment) => {
         return (
             <DivDetails key={comment.id}>
-                {comment.body}
-                <button onClick={() => commentVote(`comments/${comment.id}/votes`, comment.userVote, 1)}> Like </button>
-                <span>{comment.voteSum ? comment.voteSum : 0}</span>
-                <button onClick={() => commentVote(`comments/${comment.id}/votes`, comment.userVote, -1)}> Deslike </button>
+                <div>
+                    <p>Enviado por: {comment.username}</p>
+                    {comment.body}
+                </div>
+
+                <DivVote>
+                    <button onClick={() => commentVote(`comments/${comment.id}/votes`, comment.userVote, 1)}> 
+                        <ThumbUpIcon sx={{ color: "#6F6F6F" }}/> 
+                    </button>
+                    <span>{comment.voteSum ? comment.voteSum : 0}</span>
+                    <button onClick={() => commentVote(`comments/${comment.id}/votes`, comment.userVote, -1)}> 
+                        <ThumbDownAltIcon sx={{ color: "#6F6F6F" }}/> 
+                    </button>
+                </DivVote>
             </DivDetails>
         )
     })
@@ -43,23 +58,31 @@ export function PostPage(props) {
     return (
         <DivComments>
             <ModalComments>
-                <button onClick={() => props.setShowModal(false)}> X </button>
+                <button onClick={() => props.setShowModal(false)}> 
+                    <KeyboardReturnIcon  sx={{ color: "#fc9120" }}/> 
+                </button>
 
                 <DivDetailsFeed>
-                    {props.dataModal.body}
+                    <u> Enviado por: {props.dataModal.username} </u>
+                    <p> Assunto: <strong>{props.dataModal.title}</strong> </p> 
+                    <p> {props.dataModal.body} </p>
                 </DivDetailsFeed>
 
                 <FormComment onSubmit={onSubmitNewComment}>
-                    <input placeholder="Escreva um comentário..."
+                    <TextField placeholder="Escreva um comentário..."
+                        variant="outlined"
                         name="body"
+                        multiline
+                        maxRows={3}
+                        size="small"
+                        margin="dense"
                         value={form.body}
                         onChange={onChange}
                     />
 
-                    <button type={"submit"}> Comentar </button>
+                    <Button type={"submit"} variant="contained" size="small"> Comentar </Button>
                 </FormComment>
 
-                <p> Comentários </p>
                 <ScrollContainer>
                     {detailsPost}
                 </ScrollContainer>
