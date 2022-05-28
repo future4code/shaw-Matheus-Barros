@@ -52,4 +52,26 @@ function anagram(palavra: string): number {
     }
 }
 
-console.table(anagram('Alsk'))
+//Exemplo com Epaço
+console.table(anagram(" ")) //undefined
+console.table(anagram("Olá Mund@")) //undefined
+
+//EXemplo Vazio
+console.table(anagram("")) //null
+
+//Exemplo com Um
+console.table(anagram(".")) // !1 = 1
+console.table(anagram("1")) // !1 = 1
+console.table(anagram("A")) // !1 = 1
+
+//Exemplo com Dois Diferentes e Iguais
+console.table(anagram(".,")) // !2 = 2
+console.table(anagram("Oi")) // !2 = 2
+console.table(anagram("11")) //undeifned
+console.table(anagram("Aa")) //undefined
+
+//Exemplo com Mais de Dois Diferentes e Iguais
+console.table(anagram("Olá")) // !3 = 6
+console.table(anagram("mundo")) // !5 = 120
+console.table(anagram("aaaaa")) //undeifned
+console.table(anagram("AAAAA")) //undefined
