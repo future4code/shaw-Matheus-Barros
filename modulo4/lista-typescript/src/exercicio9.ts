@@ -75,3 +75,31 @@ console.table(anagram("Olá")) // !3 = 6
 console.table(anagram("mundo")) // !5 = 120
 console.table(anagram("aaaaa")) //undeifned
 console.table(anagram("AAAAA")) //undefined
+
+
+// ------------------------------------------------------------
+
+
+function anagramasResumido(palavra: string): number {
+    
+    //Variável com funcionalidade para dividir cada caractere.
+    const palavraDividida: string[] = palavra.split('')
+    
+    //Variável que irá armazenar a quantia de anagramas possíveis da palavra;
+    //Iniciamos a variável com 1 pois é a própria palavra.  
+    let anagramas: number = 1
+
+    //Laço de repetição para fazer o fatorial;
+    //Iniciamos a variável i com 1 pois 0 não é usado em fatorial. 
+    for(let i: number = 1; i < palavraDividida.length; i++){
+        anagramas = palavraDividida.length * i
+    }
+   
+    return anagramas
+}
+
+console.log(anagramasResumido("")) // !1 = 1
+console.log(anagramasResumido(" ")) // !1 = 1
+console.log(anagramasResumido("o ")) // !2 = 2
+console.log(anagramasResumido("Aa ")) // !3 = 6
+console.log(anagramasResumido(" . ")) // !3 = 6
