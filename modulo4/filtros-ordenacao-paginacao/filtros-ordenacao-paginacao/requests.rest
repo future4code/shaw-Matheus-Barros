@@ -1,0 +1,19 @@
+### Filtro por 'name' e 'type'.
+
+GET http://localhost:3003/users?name=Layla&type=CX
+
+### Ordenação por 'name', 'email' ou 'type' e em 'ASC' (crescente) ou 'DESC' (decrescente).
+
+GET http://localhost:3003/users/ordenation?sort=name&order=DESC
+
+### Paginação usando 'page' com limite de 5 usuários.
+
+GET http://localhost:3003/users/pagination?page=2
+
+### Filtro por 'type'.
+
+GET http://localhost:3003/users/CX
+
+### Todos os filtros juntos por meio de Querys.
+
+GET  http://localhost:3003/user
