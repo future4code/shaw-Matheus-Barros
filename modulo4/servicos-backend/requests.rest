@@ -1,0 +1,7 @@
+### Pega endereço.
+
+GET http://localhost:3003/endereco/01510010
+
+### Adiciona endereço.
+
+POST http://localhost:3003/user/01510010?numero=2&complemento=xablauzin
