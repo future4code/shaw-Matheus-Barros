@@ -19,7 +19,7 @@ export class Authenticator {
 
             return {
                 id: data.id,
-                role: data.role
+                email: data.email
             };
 
         } catch (error) {
