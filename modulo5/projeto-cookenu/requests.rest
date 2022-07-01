@@ -4,9 +4,9 @@ POST http://localhost:3003/signup
 Content-Type: application/json
 
 {
-    "name": "Layane",
-    "email": "Layane@gmail.com",
-    "password": "batatinha frita"
+    "name": "Matheus",
+    "email": "Matheus@gmail.com",
+    "password": "xablauzin"
 }
 
 ### Entrar na Conta ###
@@ -15,6 +15,15 @@ POST http://localhost:3003/login
 Content-Type: application/json
 
 {
-    "email": "Layane@gmail.com",
-    "password": "batatinha frita"
+    "email": "Matheus@gmail.com",
+    "password": "xablauzin"
 }
+
+#### TOKEN ####
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgzODk2ZjYxLTJkZDItNDliMC04ODVmLWE5ZTAzMjZiODNmZiIsImVtYWlsIjoiTWF0aGV1c0BnbWFpbC5jb20iLCJpYXQiOjE2NTY3MDg4NDIsImV4cCI6MTY1NjcxMjQ0Mn0.gBpxMh8siuNw8pb2Wn0xaM3jTfXWYVRyTDCPWHk-SvE
+
+### Pegar Perfil ###
+
+GET http://localhost:3003/user/profile
+Authorization: {{token}}

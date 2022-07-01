@@ -43,7 +43,7 @@ export class UserController{
             }
 
             const userDB = new UserDB()
-            const checkEmail = await userDB.checkEmail(email)
+            const checkEmail = await userDB.selectUserByEmail(email)
 
             if(checkEmail.length > 0){
                 res.statusCode = 409
@@ -100,7 +100,7 @@ export class UserController{
             }
 
             const userDB = new UserDB()
-            const checkEmail = await userDB.checkEmail(email)
+            const checkEmail = await userDB.selectUserByEmail(email)
 
             if(checkEmail.length < 0){
                 res.statusCode = 409
@@ -120,6 +120,39 @@ export class UserController{
 
             res.status(200).send({ acess_token: token })
 
+        } catch (error: any) {
+            res.send(error.slqMessage || error.message)
+        }
+    }
+
+    // Pegar perfil
+    async getProfile(req: Request, res: Response){
+        try {
+            const token = req.headers.authorization
+
+            if(!token){
+                res.statusCode = 422
+                throw new Error("É necessário um 'authorization'.");
+            }
+
+            if(typeof token !== "string"){
+                res.statusCode = 422
+                throw new Error("Authorization deve ser do tipo string.");
+            }
+
+            const authenticator = new Authenticator()
+            const userInfo = authenticator.getTokenData(token)
+
+            if(!userInfo){
+                res.statusCode = 401
+                throw new Error("Token expirado ou inválido.");
+            }
+
+            const userDB = new UserDB()
+            const userProfile = await userDB.selectUserByEmail(userInfo.email)
+
+            res.status(200).send({ id: userProfile[0].id, name: userProfile[0].name, email: userProfile[0].email})
+            
         } catch (error: any) {
             res.send(error.slqMessage || error.message)
         }
