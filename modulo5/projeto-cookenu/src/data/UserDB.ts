@@ -1,10 +1,9 @@
 import { BaseDB } from "./BaseDB";
 import { UserModel } from "../model/UserModel";
 
-
 export class UserDB extends BaseDB {
 
-    signup = async (newUser: UserModel) => {
+    insertSignup = async (newUser: UserModel) => {
         await BaseDB.connection('cookenu_user')
         .insert({
             id: newUser.getId(),
@@ -18,6 +17,14 @@ export class UserDB extends BaseDB {
         const check = await BaseDB.connection('cookenu_user')
         .select('*')
         .where({ email })
+
+        return check
+    }
+
+    selectUserById = async (id: string) => {
+        const check = await BaseDB.connection('cookenu_user')
+        .select('*')
+        .where({ id })
 
         return check
     }

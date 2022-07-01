@@ -21,9 +21,14 @@ Content-Type: application/json
 
 #### TOKEN ####
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgzODk2ZjYxLTJkZDItNDliMC04ODVmLWE5ZTAzMjZiODNmZiIsImVtYWlsIjoiTWF0aGV1c0BnbWFpbC5jb20iLCJpYXQiOjE2NTY3MDg4NDIsImV4cCI6MTY1NjcxMjQ0Mn0.gBpxMh8siuNw8pb2Wn0xaM3jTfXWYVRyTDCPWHk-SvE
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjgzODk2ZjYxLTJkZDItNDliMC04ODVmLWE5ZTAzMjZiODNmZiIsImVtYWlsIjoiTWF0aGV1c0BnbWFpbC5jb20iLCJpYXQiOjE2NTY3MTAwMjAsImV4cCI6MTY1NjcxMzYyMH0.gW_SZah8vVQOmfHOZFg3ANfGN8KDGOVkD_8ykk3KQ_k
 
 ### Pegar Perfil ###
 
 GET http://localhost:3003/user/profile
+Authorization: {{token}}
+
+### Pegar Outros Perfis ###
+
+GET http://localhost:3003/user/734220a3-871a-46b4-8de6-e39bbc8bc4db
 Authorization: {{token}}

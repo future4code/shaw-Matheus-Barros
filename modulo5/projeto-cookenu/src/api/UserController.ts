@@ -57,7 +57,7 @@ export class UserController{
             const hashPassword = await hashManage.generateHash(password)
 
             const newUser = new UserModel(id, name, email, hashPassword)
-            userDB.signup(newUser)
+            userDB.insertSignup(newUser)
             
             const authenticator = new Authenticator()
             const token = authenticator.generateToken({ id, email })
@@ -131,7 +131,7 @@ export class UserController{
             const token = req.headers.authorization
 
             if(!token){
-                res.statusCode = 422
+                res.statusCode = 401
                 throw new Error("É necessário um 'authorization'.");
             }
 
@@ -152,6 +152,45 @@ export class UserController{
             const userProfile = await userDB.selectUserByEmail(userInfo.email)
 
             res.status(200).send({ id: userProfile[0].id, name: userProfile[0].name, email: userProfile[0].email})
+            
+        } catch (error: any) {
+            res.send(error.slqMessage || error.message)
+        }
+    }
+
+    // Pegar outro perfil
+    async getOtherProfile(req: Request, res: Response){
+        try {
+            const id = req.params.id
+            const token = req.headers.authorization
+
+            if(!token){
+                res.statusCode = 401
+                throw new Error("É necessário um 'authorization'.");
+            }
+
+            if(typeof token !== "string"){
+                res.statusCode = 422
+                throw new Error("Authorization deve ser do tipo string.");
+            }
+
+            const authenticator = new Authenticator()
+            const userData = authenticator.getTokenData(token)
+
+            if(!userData){
+                res.statusCode = 401
+                throw new Error("Token expirado ou inválido.");
+            }
+
+            const userDB = new UserDB()
+            const userProfile = await userDB.selectUserById(id)
+
+            if(userProfile.length < 0){
+                res.statusCode = 404
+                throw new Error("Usuário não encontrado.");
+            }
+
+            res.status(200).send({ id: userProfile[0].id, name: userProfile[0].name, email: userProfile[0].email })
             
         } catch (error: any) {
             res.send(error.slqMessage || error.message)
