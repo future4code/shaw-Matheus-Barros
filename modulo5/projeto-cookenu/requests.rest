@@ -8,3 +8,13 @@ Content-Type: application/json
     "email": "Layane@gmail.com",
     "password": "batatinha frita"
 }
+
+### Entrar na Conta ###
+
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+    "email": "Layane@gmail.com",
+    "password": "batatinha frita"
+}

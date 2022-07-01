@@ -68,4 +68,60 @@ export class UserController{
             res.send(error.slqMessage || error.message)
         }
     }
+
+    // Logar na conta
+    async postLogin(req: Request, res: Response){
+        try {
+            const { email, password } = req.body
+
+            if(!email || !password){
+                res.statusCode = 422
+                throw new Error("Os campos 'email' e 'password' são obrigatórios.");
+            }
+            
+            if(typeof email !== "string"){
+                res.statusCode = 422
+                throw new Error("Email deve ser do tipo string.");
+            }
+
+            if(typeof password !== "string"){
+                res.statusCode = 422
+                throw new Error("Senha deve ser do tipo string.");
+            }
+
+            if(!email.includes("@")){
+                res.statusCode = 422
+                throw new Error("Email inválido.");
+            }
+
+            if(password.length < 6){
+                res.statusCode = 422
+                throw new Error("Senha inválida.");
+            }
+
+            const userDB = new UserDB()
+            const checkEmail = await userDB.checkEmail(email)
+
+            if(checkEmail.length < 0){
+                res.statusCode = 409
+                throw new Error("Email não cadastrado.");
+            }
+
+            const hashManage = new HashManage()
+            const checkPassword: boolean = await hashManage.compare(password, checkEmail[0].password)
+
+            if (!checkPassword) {
+                res.statusCode = 409
+                throw new Error("Senha inválida.")
+            }
+
+            const authenticator = new Authenticator()
+            const token = authenticator.generateToken({ id: checkEmail[0].id, email })
+
+            res.status(200).send({ acess_token: token })
+
+        } catch (error: any) {
+            res.send(error.slqMessage || error.message)
+        }
+    }
 }

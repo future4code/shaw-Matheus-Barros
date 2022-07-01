@@ -16,7 +16,7 @@ export class UserDB extends BaseDB {
 
     checkEmail = async (email: string) => {
         const check = await BaseDB.connection('cookenu_user')
-        .select('email')
+        .select('*')
         .where({ email })
 
         return check
