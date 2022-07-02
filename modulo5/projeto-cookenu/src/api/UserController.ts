@@ -102,7 +102,7 @@ export class UserController{
             const userDB = new UserDB()
             const checkEmail = await userDB.selectUserByEmail(email)
 
-            if(checkEmail.length < 0){
+            if(checkEmail.length === 0){
                 res.statusCode = 409
                 throw new Error("Email não cadastrado.");
             }
@@ -185,7 +185,7 @@ export class UserController{
             const userDB = new UserDB()
             const userProfile = await userDB.selectUserById(id)
 
-            if(userProfile.length < 0){
+            if(userProfile.length === 0){
                 res.statusCode = 404
                 throw new Error("Usuário não encontrado.");
             }
