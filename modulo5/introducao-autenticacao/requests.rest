@@ -1,0 +1,19 @@
+### Criar usuário ###
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "email": "@",
+    "password": "123456"
+}
+
+### Pegar usuário por Email ###
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "m@",
+    "password": "123456"
+}
