@@ -36,25 +36,34 @@ export const LeftDiv = styled.div`
     justify-content: space-between;
     height: 100vh;
     width: 40vw;
-
-    >img{
-        position: absolute;
-        right: 60%;
-        height: 100%;
-    }
+    position: relative;
 
     @media screen and (max-device-width : 800px){
         width: 100%;
         height: 55%;
         overflow: hidden;
+    }
+`
 
-        >img{
-            transform: rotate(90deg);
-            top: 4%;
-            right: 41%;
-            width: 15%;
-            height: 100%;
-        }
+export const ShapeDesktop = styled.img`
+    position: absolute;
+    right: 0%;
+    height: 100%;
+
+    @media screen and (max-device-width : 800px){
+        display: none;
+    }
+`
+
+export const ShapeMobile = styled.img`
+    display: none;
+    position: absolute;
+    bottom: -1px;
+    width: 100%;
+    height: 6%;
+
+    @media screen and (max-device-width : 800px){
+        display: flex;
     }
 `
 
@@ -136,10 +145,23 @@ export const RightDiv = styled.div`
     height: 100vh;
     width: 60vw;
     background-color: #EFEFEF;
+    position: relative;
+
+    p{
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 45px;
+        text-align: center;
+    }
 
     @media screen and (max-device-width : 800px){
         width: 100%;
         height: 45%;
+
+        p{
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
     }
 `
 
@@ -149,4 +171,8 @@ export const NumberContainer = styled.div`
     flex-wrap: wrap;
     gap: 2%;
     width: 80%;
+
+    @media screen and (max-device-width : 800px){
+        margin-bottom: 15%;
+    }
 `

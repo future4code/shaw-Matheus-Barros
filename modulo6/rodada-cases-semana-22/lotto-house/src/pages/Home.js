@@ -1,5 +1,6 @@
-import { NumberDiv, HomeDiv, LeftDiv, LottoInfo, LogoDiv, ContestDiv, ContestInfo, RightDiv, NumberContainer } from "./style";
+import { NumberDiv, HomeDiv, LeftDiv, LottoInfo, ShapeDesktop, ShapeMobile, LogoDiv, ContestDiv, ContestInfo, RightDiv, NumberContainer } from "./style";
 import shapeDesktop from "../assets/shapeDesktop.png";
+import shapeMobile from "../assets/shapeMobile.png";
 import logo from "../assets/logo.png"
 import { useEffect, useState } from "react";
 import { getLotto } from "../api/getLotto";
@@ -68,13 +69,15 @@ export default function Home(){
                     </ContestDiv>
                 </LottoInfo>
 
-                <img src={shapeDesktop} />
+                <ShapeDesktop src={shapeDesktop} />
+                <ShapeMobile src={shapeMobile} />
             </LeftDiv>
 
             <RightDiv>
                 <NumberContainer>
                     { contestNumbers }
                 </NumberContainer>
+                <p>Este sorteio é meramente ilustrativo e não possui nenhuma ligação com a CAIXA.</p>
             </RightDiv>
         </HomeDiv>
     )
