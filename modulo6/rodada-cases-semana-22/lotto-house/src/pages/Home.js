@@ -1,4 +1,4 @@
-import { NumberDiv, HomeDiv, LeftDiv, LottoInfo, LogoDiv, ContestInfo, RightDiv, NumberContainer } from "./style";
+import { NumberDiv, HomeDiv, LeftDiv, LottoInfo, LogoDiv, ContestDiv, ContestInfo, RightDiv, NumberContainer } from "./style";
 import shapeDesktop from "../assets/shapeDesktop.png";
 import logo from "../assets/logo.png"
 import { useEffect, useState } from "react";
@@ -62,10 +62,10 @@ export default function Home(){
                         <span> { currentLotto } </span>
                     </LogoDiv>
 
-                    <div>
+                    <ContestDiv>
                         <p>CONCURSO</p>
                         <ContestInfo>{ currentContest.id } - { moment(currentContest.data).format("DD/MM/YYYY") }</ContestInfo>
-                    </div>
+                    </ContestDiv>
                 </LottoInfo>
 
                 <img src={shapeDesktop} />

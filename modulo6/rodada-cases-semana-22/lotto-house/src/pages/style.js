@@ -12,6 +12,12 @@ export const NumberDiv = styled.div`
     font-size: 27px;
     background-color: white;
     margin-top: 2%;
+
+    @media screen and (max-device-width : 800px){
+        font-size: 21px;
+        width: 50px;
+        height: 50px;
+    }
 `
 
 export const HomeDiv = styled.div`
@@ -19,6 +25,10 @@ export const HomeDiv = styled.div`
     height: 100vh;
     width: 100vw;
     background-color: ${props => lottoColors[props.color]};
+
+    @media screen and (max-device-width : 800px){
+        flex-direction: column;
+    }
 `
 
 export const LeftDiv = styled.div`
@@ -31,6 +41,20 @@ export const LeftDiv = styled.div`
         position: absolute;
         right: 60%;
         height: 100%;
+    }
+
+    @media screen and (max-device-width : 800px){
+        width: 100%;
+        height: 55%;
+        overflow: hidden;
+
+        >img{
+            transform: rotate(90deg);
+            top: 4%;
+            right: 41%;
+            width: 15%;
+            height: 100%;
+        }
     }
 `
 
@@ -52,26 +76,57 @@ export const LottoInfo = styled.div`
         outline: none;
         font-weight: 500;
     }
+
+    @media screen and (max-device-width : 800px){
+        padding-left: 0;
+        width: 100%;
+        align-items: center;
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
 `
 
 export const LogoDiv = styled.div`
     display: flex;
     align-items: center;
-    gap: 22px;
 
     img{
         height: 30%;
+        margin-right: 10px;
     };
 
     span{
         font-size: 30px;
         font-weight: bold;
     }
+
+    @media screen and (max-device-width : 800px){
+        flex-direction: column;
+        height: 30%;
+
+        img{
+            height: 62px;
+            margin-right: 0;
+        };
+    }
+`
+
+export const ContestDiv = styled.div`
+    @media screen and (max-device-width : 800px){
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 `
 
 export const ContestInfo = styled.p`
     font-weight: bold;
     font-size: 20px;
+
+    @media screen and (max-device-width : 800px){
+        font-weight: 400;
+        font-size: 20px;    
+    }
 `
 
 export const RightDiv = styled.div`
@@ -81,6 +136,11 @@ export const RightDiv = styled.div`
     height: 100vh;
     width: 60vw;
     background-color: #EFEFEF;
+
+    @media screen and (max-device-width : 800px){
+        width: 100%;
+        height: 45%;
+    }
 `
 
 export const NumberContainer = styled.div`
