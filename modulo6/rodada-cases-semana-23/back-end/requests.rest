@@ -1,0 +1,14 @@
+### Send Form ###
+
+POST http://localhost:3003/form
+Content-Type: application/json
+
+{
+    "firstName": "Layane",
+    "lastName": "Bastos",
+    "participation": 90
+}
+
+### Get Form ###
+
+GET http://localhost:3003/form
