@@ -58,10 +58,6 @@ export class FormBusiness {
         try {
             const formData: FormData[] = await this.formDataBase.selectFormData()
 
-            if(formData.length === 0) {
-                throw new BadRequestError("No data found.")
-            }
-
             return formData
 
         } catch (error: any) {
@@ -71,5 +67,19 @@ export class FormBusiness {
                 throw new InternalError(error.sqlMessage || error.message)
             }
         }
+    }
+
+    public deleteData = async (): Promise<void> => {
+        try {
+            await this.formDataBase.deleteData()
+        } catch (error: any) {
+
+            if (error instanceof BadRequestError) {
+                throw new BadRequestError(error.message)
+            }
+
+            throw new InternalError(error.sqlMessage || error.message)
+        }
+
     }
 }

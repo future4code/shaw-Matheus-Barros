@@ -44,4 +44,13 @@ export default class FormDB extends BaseDB {
             throw new InternalError(error.sqlMessage || error.message)
         }
     }
+
+    public deleteData = async (): Promise<void> => {
+        try {
+            await BaseDB.connection(FormDB.TABLE_NAME)
+                .delete()
+        } catch (error: any) {
+            throw new InternalError(error.sqlMessage || error.message)
+        }
+    }
 }

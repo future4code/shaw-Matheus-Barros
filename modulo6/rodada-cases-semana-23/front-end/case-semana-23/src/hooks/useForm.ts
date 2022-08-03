@@ -3,7 +3,7 @@ import { useState } from "react"
 export const useForm = (initialState: {
         firstName: string,
         lastName: string,
-        participation: number
+        participation: string
     }) => {
 
     const [form, setForm] = useState(initialState)

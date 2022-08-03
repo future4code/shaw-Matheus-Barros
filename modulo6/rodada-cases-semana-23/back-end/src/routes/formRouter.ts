@@ -15,4 +15,4 @@ export const formRouter = express.Router()
 
 formRouter.post('', formController.postForm)
 formRouter.get('', formController.getFormData)
-
+formRouter.delete('', formController.deleteData)

@@ -2,8 +2,8 @@ export type PropsHeader = {
     form: {
         firstName: string,
         lastName: string,
-        participation: number
+        participation: string
     },
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-    onSubmit: () => void
+    onSubmit: (event: any) => void
 }

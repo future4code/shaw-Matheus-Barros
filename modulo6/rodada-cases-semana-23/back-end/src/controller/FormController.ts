@@ -41,4 +41,20 @@ export class FormController {
             }
         }
     }
+
+    public deleteData = async (req: Request, res: Response) => {
+        try {
+            await this.formBusiness.deleteData()
+
+            res.status(200).send({message: "Data deleted." })
+
+        } catch (error: any) {
+
+            if (error instanceof CustomError) {
+                res.status(error.statusCode).send({ error: error.message })
+            } else {
+                res.status(400).send({ error: error.message })
+            }
+        }
+    }
 }

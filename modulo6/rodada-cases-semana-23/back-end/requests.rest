@@ -4,11 +4,15 @@ POST http://localhost:3003/form
 Content-Type: application/json
 
 {
-    "firstName": "Layane",
-    "lastName": "Bastos",
-    "participation": 90
+    "firstName": "Matheus",
+    "lastName": "Barros",
+    "participation": 47
 }
 
-### Get Form ###
+### Get Data ###
 
 GET http://localhost:3003/form
+
+### Del Data ###
+
+DELETE http://localhost:3003/form
