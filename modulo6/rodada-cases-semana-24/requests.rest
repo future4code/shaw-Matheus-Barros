@@ -10,4 +10,4 @@ Content-Type: application/json
 
 ### Get Products ###
 
-GET http://localhost:3003/products?name="Pokeball"
+GET http://localhost:3003/products?name=Pokeball
