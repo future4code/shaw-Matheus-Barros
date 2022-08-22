@@ -1,0 +1,13 @@
+### Send Product ###
+
+POST http://localhost:3003/products
+Content-Type: application/json
+
+{
+   "name": "Pokeball",
+   "tags": ["Pokémon", "Anime"]
+}
+
+### Get Products ###
+
+GET http://localhost:3003/products?name=Pokeball
